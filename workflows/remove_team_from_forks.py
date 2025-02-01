@@ -3,7 +3,7 @@ import requests
 
 ORG_NAME = "UNCG-PHY-351-S25"
 TEAM_NAME = "Students"
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+GITHUB_TOKEN = os.getenv("ORG_ADMIN_TOKEN")
 
 headers = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
 
