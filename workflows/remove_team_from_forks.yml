@@ -16,7 +16,7 @@ jobs:
       - name: Check for student forks and remove team access
         uses: octokit/request-action@v2.x
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
         with:
           route: GET /orgs/{org}/repos
           org: "UNCG-PHY-351-S25"
@@ -25,4 +25,4 @@ jobs:
         run: |
           python remove_team_from_forks.py
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
