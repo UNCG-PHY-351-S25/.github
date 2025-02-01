@@ -1,0 +1,28 @@
+name: Remove Team from Student Forks
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Runs every 5 minutes
+  workflow_dispatch:  # Allows manual triggering
+
+permissions:
+  contents: read
+  administration: write
+
+jobs:
+  remove_team_from_forks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for student forks and remove team access
+        uses: octokit/request-action@v2.x
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          route: GET /orgs/{org}/repos
+          org: "UNCG-PHY-351-S25"
+      
+      - name: Run removal script
+        run: |
+          python remove_team_from_forks.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
